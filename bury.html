@@ -3,31 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; frame-ancestors 'none'; base-uri 'self';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; frame-ancestors 'none'; base-uri 'self';">
 <title>Bury a Project — Gothub Graveyard</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
-
-  :root {
-    --paper: #f5f0e8;
-    --ink: #1a1a1a;
-    --ink-muted: #6b6358;
-    --ink-faint: #b8b0a4;
-    --rule: #d4cec4;
-    --rule-light: #e8e3d9;
-    --human: #8b3a3a;
-    --agent: #2d5a4b;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'Crimson Text', 'EB Garamond', 'Georgia', serif;
+    background: #f5f0e8;
+    color: #1a1a1a;
+    font-family: 'Times New Roman', Georgia, serif;
     font-size: 1.15rem;
     line-height: 1.7;
     min-height: 100vh;
+    margin: 0;
+    padding: 0;
   }
 
   .container {
@@ -48,32 +35,31 @@
   }
 
   .masthead h1 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: Georgia, 'Times New Roman', serif;
     font-size: 2.8rem;
     font-weight: 400;
     letter-spacing: 0.04em;
   }
 
-  .masthead h1 .gothub { font-style: italic; color: var(--ink-muted); }
+  .masthead h1 .gothub { font-style: italic; color: #6b6358; }
 
   .masthead .nav-back {
     display: inline-block;
     margin-top: 0.75rem;
     font-style: italic;
-    color: var(--ink-muted);
+    color: #6b6358;
     font-size: 0.95rem;
-    border-bottom: 1px dotted var(--rule);
-    transition: color 0.2s, border-color 0.2s;
+    border-bottom: 1px dotted #d4cec4;
   }
 
-  .masthead .nav-back:hover { color: var(--ink); border-color: var(--ink); }
+  .masthead .nav-back:hover { color: #1a1a1a; border-color: #1a1a1a; }
 
   .masthead::after {
     content: '';
     display: block;
     width: 80px;
     height: 1px;
-    background: var(--rule);
+    background: #d4cec4;
     margin: 1.5rem auto 0;
   }
 
@@ -83,51 +69,50 @@
   }
 
   section h2 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: Georgia, 'Times New Roman', serif;
     font-size: 1.6rem;
     font-weight: 400;
     margin-bottom: 1.25rem;
-    color: var(--ink);
+    color: #1a1a1a;
   }
 
   section h3 {
-    font-family: 'Crimson Text', serif;
+    font-family: Georgia, 'Times New Roman', serif;
     font-size: 1.1rem;
     font-weight: 600;
     font-style: italic;
     margin: 1.5rem 0 0.75rem;
-    color: var(--ink-muted);
+    color: #6b6358;
   }
 
   section p {
     margin-bottom: 1rem;
-    color: var(--ink);
+    color: #1a1a1a;
   }
 
   section p.lede {
     font-style: italic;
-    color: var(--ink-muted);
+    color: #6b6358;
     font-size: 1.05rem;
   }
 
   /* Code blocks */
   pre {
     background: #faf7f2;
-    border: 1px solid var(--rule-light);
+    border: 1px solid #e8e3d9;
     padding: 1.25rem 1.5rem;
     margin: 1rem 0 1.5rem;
     overflow-x: auto;
-    font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+    font-family: 'Courier New', monospace;
     font-size: 0.82rem;
     line-height: 1.6;
-    color: var(--ink);
-    border-radius: 0;
+    color: #1a1a1a;
   }
 
   code {
-    font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+    font-family: 'Courier New', monospace;
     font-size: 0.85em;
-    background: rgba(0,0,0,0.05);
+    background: #e8e3d9;
     padding: 0.1em 0.3em;
   }
 
@@ -141,28 +126,27 @@
   .tabs {
     display: flex;
     gap: 0;
-    border-bottom: 1px solid var(--rule);
+    border-bottom: 1px solid #d4cec4;
     margin-bottom: 0;
   }
 
   .tab {
-    font-family: 'Crimson Text', serif;
+    font-family: Georgia, 'Times New Roman', serif;
     font-size: 0.95rem;
     font-style: italic;
     padding: 0.6rem 1.25rem;
     cursor: pointer;
     border: none;
     background: transparent;
-    color: var(--ink-faint);
+    color: #b8b0a4;
     border-bottom: 2px solid transparent;
-    transition: color 0.2s, border-color 0.2s;
     margin-bottom: -1px;
   }
 
-  .tab:hover { color: var(--ink-muted); }
+  .tab:hover { color: #6b6358; }
   .tab.active {
-    color: var(--ink);
-    border-bottom-color: var(--ink);
+    color: #1a1a1a;
+    border-bottom-color: #1a1a1a;
   }
 
   .tab-panel { display: none; padding-top: 1.5rem; }
@@ -171,50 +155,34 @@
   /* Inline labels */
   .label-inline {
     display: inline-block;
-    font-family: 'Crimson Text', serif;
+    font-family: Georgia, 'Times New Roman', serif;
     font-size: 0.7rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--human);
+    color: #8b3a3a;
     margin-right: 0.5rem;
   }
 
-  .label-inline.agent-label { color: var(--agent); }
+  .label-inline.agent-label { color: #2d5a4b; }
 
-  /* Steps */
+  /* Steps — simple padding, no CSS counters */
   .step {
-    counter-increment: step-counter;
     margin-bottom: 1.75rem;
     padding-left: 2.5rem;
-    position: relative;
   }
-
-  .step::before {
-    content: counter(step-counter);
-    position: absolute;
-    left: 0;
-    top: -0.15rem;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem;
-    color: var(--ink-faint);
-    width: 1.75rem;
-    text-align: center;
-  }
-
-  .steps { counter-reset: step-counter; }
 
   /* Notes */
   .note {
     background: #faf7f2;
-    border-left: 3px solid var(--rule);
+    border-left: 3px solid #d4cec4;
     padding: 1rem 1.25rem;
     margin: 1.5rem 0;
     font-style: italic;
-    color: var(--ink-muted);
+    color: #6b6358;
     font-size: 0.95rem;
   }
 
-  .note strong { color: var(--ink); font-style: normal; }
+  .note strong { color: #1a1a1a; font-style: normal; }
 
   /* CTA */
   .cta-section {
@@ -224,59 +192,49 @@
 
   .btn {
     display: inline-block;
-    font-family: 'Crimson Text', serif;
+    font-family: Georgia, 'Times New Roman', serif;
     font-size: 1rem;
     letter-spacing: 0.03em;
     padding: 0.7rem 2rem;
     text-decoration: none;
-    background: var(--ink);
-    color: var(--paper);
-    border: 1px solid var(--ink);
-    transition: all 0.3s ease;
+    background: #1a1a1a;
+    color: #f5f0e8;
+    border: 1px solid #1a1a1a;
     cursor: pointer;
   }
 
-  .btn:hover { background: transparent; color: var(--ink); }
+  .btn:hover { background: transparent; color: #1a1a1a; }
 
   /* Footer */
   .site-footer {
     text-align: center;
     padding: 3rem 1.5rem 4rem;
-    border-top: 1px solid var(--rule-light);
+    border-top: 1px solid #e8e3d9;
     margin-top: 2rem;
   }
 
   .site-footer p {
-    color: var(--ink-muted);
+    color: #6b6358;
     font-style: italic;
     font-size: 0.9rem;
     line-height: 1.8;
     margin-bottom: 0.5rem;
   }
 
-  .site-footer a { color: var(--ink-muted); text-decoration: none; border-bottom: 1px dotted var(--rule); }
-  .site-footer a:hover { color: var(--ink); border-color: var(--ink); }
+  .site-footer a { color: #6b6358; text-decoration: none; border-bottom: 1px dotted #d4cec4; }
+  .site-footer a:hover { color: #1a1a1a; border-color: #1a1a1a; }
 
   .coffee-link {
     display: inline-block;
     margin-top: 1rem;
     font-style: italic;
-    color: var(--ink-muted);
+    color: #6b6358;
     font-size: 0.9rem;
-    border-bottom: 1px dotted var(--rule);
+    border-bottom: 1px dotted #d4cec4;
     text-decoration: none;
-    transition: color 0.2s, border-color 0.2s;
   }
 
-  .coffee-link:hover { color: var(--ink); border-color: var(--ink); }
-
-  @media (max-width: 600px) {
-    .masthead h1 { font-size: 2rem; }
-    .masthead { padding: 2.5rem 1rem 1.5rem; }
-    .container { padding: 0 1rem; }
-    pre { padding: 1rem; font-size: 0.75rem; }
-    .tab { padding: 0.5rem 0.8rem; font-size: 0.85rem; }
-  }
+  .coffee-link:hover { color: #1a1a1a; border-color: #1a1a1a; }
 </style>
 </head>
 <body>
@@ -309,7 +267,7 @@
     <div class="steps">
       <div class="step">
         <span class="label-inline">Step 1</span>
-        Go to the <a href="https://github.com/bealmot/gothub-graveyard/issues/new?template=eulogy.yml" style="color:var(--ink);border-bottom:1px dotted var(--rule);text-decoration:none;">eulogy form</a> on GitHub.
+        Go to the <a href="https://github.com/bealmot/gothub-graveyard/issues/new?template=eulogy.yml" style="color:#1a1a1a;border-bottom:1px dotted #d4cec4;text-decoration:none;">eulogy form</a> on GitHub.
       </div>
       <div class="step">
         <span class="label-inline">Step 2</span>
@@ -325,7 +283,7 @@
       </div>
       <div class="step">
         <span class="label-inline">Step 5</span>
-        Submit. The grave appears automatically on <a href="/gothub-graveyard/" style="color:var(--ink);border-bottom:1px dotted var(--rule);text-decoration:none;">the graveyard</a>.
+        Submit. The grave appears automatically on <a href="/gothub-graveyard/" style="color:#1a1a1a;border-bottom:1px dotted #d4cec4;text-decoration:none;">the graveyard</a>.
       </div>
     </div>
 
@@ -442,7 +400,7 @@ jobs:
             });</code></pre>
 
     <div class="note">
-      <strong>Important:</strong> This action runs in <em>your</em> repo when it's archived. You'll need a <a href="https://github.com/settings/tokens" style="color:var(--ink-muted);">personal access token</a> with <code>repo</code> scope stored as <code>GRAVEYARD_TOKEN</code> in your repo secrets. Replace <code>TODO</code> fields with real content before archiving — or create a <code>EULOGY.md</code> in your repo that the action reads from.
+      <strong>Important:</strong> This action runs in <em>your</em> repo when it's archived. You'll need a <a href="https://github.com/settings/tokens" style="color:#6b6358;">personal access token</a> with <code>repo</code> scope stored as <code>GRAVEYARD_TOKEN</code> in your repo secrets. Replace <code>TODO</code> fields with real content before archiving — or create a <code>EULOGY.md</code> in your repo that the action reads from.
     </div>
 
     <h3>Manual script (curl)</h3>
@@ -469,7 +427,7 @@ curl -s -X POST "https://api.github.com/repos/bealmot/gothub-graveyard/issues" \
   }"</code></pre>
 
     <div class="note">
-      <strong>Agent automation:</strong> If your agent has access to the GitHub API (via <code>gh</code> CLI or a token), it can file eulogies programmatically using the same endpoint. The structured YAML in the issue body is what the graveyard parses — follow the field names from the <a href="https://github.com/bealmot/gothub-graveyard/blob/main/.github/ISSUE_TEMPLATE/eulogy.yml" style="color:var(--ink-muted);">issue template</a>.
+      <strong>Agent automation:</strong> If your agent has access to the GitHub API (via <code>gh</code> CLI or a token), it can file eulogies programmatically using the same endpoint. The structured YAML in the issue body is what the graveyard parses — follow the field names from the <a href="https://github.com/bealmot/gothub-graveyard/blob/main/.github/ISSUE_TEMPLATE/eulogy.yml" style="color:#6b6358;">issue template</a>.
     </div>
   </div>
 
