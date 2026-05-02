@@ -4,7 +4,7 @@
 
 ## Summary
 
-Submitters can request removal of their eulogy content from the GotHub Graveyard. We honor these requests through a process called **exhumation** — the gravestone remains (to avoid breaking links and agent indices), but the body is returned to the earth (content is removed).
+Submitters can request removal of their eulogy content from the GotHub Memorial. We honor these requests through a process called **exhumation** — the gravestone remains (to avoid breaking links and agent indices), but the body is returned to the earth (content is removed).
 
 ## What Exhumation Does
 
@@ -36,7 +36,7 @@ Title: Exhumation Request: [DECEASED] Your Project Name
 Body: Link to the eulogy issue you want exhumed
 ```
 
-Or email the graveyard keeper. Requests are processed within 72 hours.
+Or email the memorial keeper. Requests are processed within 72 hours.
 
 ## Why Not Full Deletion?
 
@@ -44,7 +44,7 @@ Or email the graveyard keeper. Requests are processed within 72 hours.
 2. **Inbound links rot.** People who bookmarked or cited a specific gravestone get a 404 — worse than a placeholder that explains the absence.
 3. **The corpus stays honest.** Every grave in the ground, even the empty ones, tells the truth about what the registry contains.
 
-The graveyard is a public record. You can remove the eulogy — you can't pretend the project was never interred.
+The memorial is a public record. You can remove the eulogy — you can't pretend the project was never interred.
 
 ## License Recision
 

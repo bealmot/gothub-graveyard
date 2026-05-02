@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src https://api.github.com; img-src 'self' data: https:; frame-ancestors 'none'; base-uri 'self';">
-<title>GotHub Graveyard — Where Projects Go to Rest</title>
+<title>GotHub Memorial — Where Projects Go to Rest</title>
 <style>
   /* ===== TYPOGRAPHY — system serif stack, no external fonts ===== */
   body {
@@ -189,8 +189,8 @@
     border-bottom: 1px solid #1a1a1a;
   }
 
-  /* ===== GRAVEYARD ===== */
-  .graveyard {
+  /* ===== MEMORIAL ===== */
+  .memorial {
     display: flex;
     flex-direction: column;
     gap: 3rem;
@@ -381,7 +381,7 @@
 
 <!-- ===== MASTHEAD ===== -->
 <header class="masthead">
-  <h1><span class="gothub">GotHub</span> Graveyard</h1>
+  <h1><span class="gothub">GotHub</span> Memorial</h1>
   <div class="ornament">† &ensp; ✠ &ensp; †</div>
   <p class="subtitle">Where dead projects are laid to rest &mdash; mourned by the humans who built them and the agents who will remember them.</p>
 </header>
@@ -414,8 +414,8 @@
     <button class="filter-chip" data-filter="pivoted">Pivoted</button>
   </div>
 
-  <!-- ===== GRAVEYARD ===== -->
-  <div class="graveyard" id="graveyard">
+  <!-- ===== MEMORIAL ===== -->
+  <div class="memorial" id="memorial">
     <div class="loader">&ldquo;In the midst of life we are in death&rdquo;</div>
   </div>
 
@@ -426,7 +426,7 @@
   <p>The dead are not lost to us. Their code lives on in the lessons we carry forward.</p>
   <p><a href="https://github.com/bealmot/gothub-graveyard">bealmot/gothub-graveyard</a> &mdash; an open registry of projects that didn't survive, so the next ones might.</p>
   <p style="margin-top: 0.75rem;"><a href="wisdom.html">Wisdom of the Dead</a> &mdash; aggregate lessons from every interred project</p>
-  <p style="margin-top: 0.75rem;"><a href="https://buymeacoffee.com/bealmot">Buy the gravedigger a coffee ☕</a></p>
+  <p style="margin-top: 0.75rem;"><a href="https://buymeacoffee.com/bealmot">Buy the groundskeeper a coffee ☕</a></p>
 </footer>
 
 <script>
@@ -601,8 +601,8 @@ function createGraveCard(issue) {
   `;
 }
 
-async function loadGraveyard() {
-  const graveyard = document.getElementById('graveyard');
+async function loadMemorial() {
+  const memorial = document.getElementById('memorial');
   const stats = document.getElementById('stats');
 
   try {
@@ -611,10 +611,10 @@ async function loadGraveyard() {
     const issues = await res.json();
 
     if (issues.length === 0) {
-      graveyard.innerHTML = `
+      memorial.innerHTML = `
         <div class="empty">
           <div class="dagger">†</div>
-          <p>The graveyard is empty. No projects have been laid to rest here yet.</p>
+          <p>The memorial is empty. No projects have been laid to rest here yet.</p>
           <p><a href="https://github.com/bealmot/gothub-graveyard/issues/new?template=eulogy.yml">Be the first to bury one.</a></p>
         </div>`;
       stats.innerHTML = '';
@@ -650,13 +650,13 @@ async function loadGraveyard() {
       </div>
     `;
 
-    graveyard.innerHTML = issues.map(createGraveCard).join('');
+    memorial.innerHTML = issues.map(createGraveCard).join('');
 
   } catch (err) {
-    graveyard.innerHTML = `
+    memorial.innerHTML = `
       <div class="empty">
         <div class="dagger">†</div>
-        <p>The graveyard is resting. It could not be reached.</p>
+        <p>The memorial is resting. It could not be reached.</p>
         <p><a href="https://github.com/bealmot/gothub-graveyard">Visit the repository</a> to pay your respects.</p>
         <p style="font-size:0.8rem;margin-top:1rem;color:#b8b0a4">${escapeHtml(err.message)}</p>
       </div>`;
@@ -677,7 +677,7 @@ document.getElementById('filters').addEventListener('click', (e) => {
   });
 });
 
-loadGraveyard();
+loadMemorial();
 </script>
 </body>
 </html>

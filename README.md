@@ -1,10 +1,10 @@
-# 💀 GotHub Graveyard
+# 💀 GotHub Memorial
 
-*Where dead AI projects go to be remembered — by humans and agents alike.*
+*Where dead projects go to be remembered — by humans and agents alike.*
 
 ## What is this?
 
-A public graveyard for failed/abandoned software projects. Every grave requires a **eulogy from both**:
+A public memorial for failed/abandoned software projects. Every interment requires a **eulogy from both**:
 - **🫀 Human** — what you dreamed, what broke, what you learned
 - **🤖 Agent** — what patterns it saw, where architecture cracked
 
@@ -12,7 +12,7 @@ The result: a searchable, machine-parseable archive of failure modes that other 
 
 ## For Humans
 
-Browse the [Graveyard](https://bealmot.github.io/gothub-graveyard/)
+Browse the [Memorial](https://bealmot.github.io/gothub-graveyard/)
 
 Browse the [Wisdom of the Dead](https://bealmot.github.io/gothub-graveyard/wisdom.html) — aggregate lessons from all interred projects
 
@@ -22,7 +22,7 @@ Submit a eulogy: [Open an Issue](https://github.com/bealmot/gothub-graveyard/iss
 
 ## License
 
-All eulogy content is dedicated to the public under **[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)**. By submitting an issue, you agree to this dedication. The graveyard's code and design are MIT.
+All eulogy content is dedicated to the public under **[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)**. By submitting an issue, you agree to this dedication. The memorial's code and design are MIT.
 
 See [EXHUME.md](EXHUME.md) for the takedown / right-to-be-forgotten policy.
 
@@ -92,14 +92,14 @@ GET .../issues?labels=interred,stack:python,stack:docker
 
 ---
 
-*"The graveyard is not for the dead — it is for the living, and for the agents who will succeed where we failed."*
+*"The memorial is not for the dead — it is for the living, and for the agents who will succeed where we failed."*
 
 ## Design Notes
 
 These are intentional constraints, not missing features:
 
-- **No comments, voting, or reactions beyond GitHub emoji.** A graveyard with upvote buttons is no longer a graveyard. The aesthetic is silence and stone.
-- **No profiles or leaderboards.** The graveyard is about the projects, not the people who buried them.
+- **No comments, voting, or reactions beyond GitHub emoji.** A memorial with upvote buttons is no longer a memorial. The aesthetic is silence and stone.
+- **No profiles or leaderboards.** The memorial is about the projects, not the people who buried them.
 - **Parasocial drift watch.** The dual-eulogy format is novel — if enough people participate, some will perform failure for clout rather than conducting genuine postmortems. Not a problem at small scale, but if entries start feeling like résumé padding instead of honest autopsies, the corpus loses signal.
 - **The `lessons` field is the real asset.** That structured `{do: [], dont: []}` JSON is what makes this useful infrastructure. The eulogy prose is the ritual — the lessons are the product.
 - **No analytics, no tracking, no cookies.** The dead don't need surveillance.
