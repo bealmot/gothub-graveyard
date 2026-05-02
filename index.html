@@ -528,6 +528,21 @@ function parseBody(body) {
   const agentMatch = body.match(/### 🤖 Agent Eulogy[\s\S]*?\n\n([^#]+?)(?=\n###|\n\n###|$)/);
   if (agentMatch) parsed.agent_eulogy = agentMatch[1].trim();
 
+  // Custom failure mode (overrides dropdown when set)
+  if (parsed.failure_mode === 'other') {
+    const customMatch = body.match(/### Custom Failure Mode[\s\S]*?\n\n([^\n#]+)/);
+    if (customMatch) {
+      let custom = customMatch[1].trim();
+      // Enforce: lowercase, hyphens only, max 4 words, no other special chars
+      custom = custom.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+      const words = custom.split('-').filter(Boolean);
+      if (words.length > 0 && words.length <= 4) {
+        parsed.failure_mode = custom;
+        parsed.failure_mode_custom = true;
+      }
+    }
+  }
+
   // Project name & URL
   parsed.project_name = (body.match(/### Project Name[\s\S]*?\n\n([^\n]+)/) || [])[1]?.trim();
   parsed.github_url = (body.match(/### GitHub URL[\s\S]*?\n\n([^\n]+)/) || [])[1]?.trim();
@@ -582,7 +597,11 @@ function formatDate(iso) {
 function createGraveCard(issue) {
   const data = parseBody(issue.body || '');
   const name = data.project_name || issue.title.replace('[DECEASED] ', '');
-  const failureLabel = FAILURE_MODES[data.failure_mode] || data.failure_mode || 'Unknown cause';
+  const rawLabel = FAILURE_MODES[data.failure_mode] || data.failure_mode || 'Unknown cause';
+  // Title-case custom modes: "deployment-nightmare" → "Deployment Nightmare"
+  const failureLabel = FAILURE_MODES[data.failure_mode]
+    ? rawLabel
+    : rawLabel.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
   const humanEulogy = data.human_eulogy || 'No human eulogy was written.';
   const agentEulogy = data.agent_eulogy || 'No agent bore witness.';
   const born = data.date_of_birth || formatDate(issue.created_at);

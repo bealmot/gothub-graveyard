@@ -30,6 +30,7 @@ body:
     id: failure-mode
     attributes:
       label: "Primary Failure Mode"
+      description: "Pick the closest match. If nothing fits, pick 'other' and fill in the custom field below."
       options:
         - "scope-creep"
         - "architecture-collapse"
@@ -43,6 +44,15 @@ body:
         - "other"
     validations:
       required: true
+
+  - type: input
+    id: failure-mode-other
+    attributes:
+      label: "Custom Failure Mode (if you picked 'other')"
+      description: "Max 3-4 words, lowercase, hyphens only. e.g., 'deployment-nightmare', 'cofounder-ghosted'. Leave blank if you picked a preset."
+      placeholder: "my-custom-failure-mode"
+    validations:
+      required: false
 
   - type: dropdown
     id: lifecycle-stage
