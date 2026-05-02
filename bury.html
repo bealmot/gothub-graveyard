@@ -399,6 +399,7 @@ jobs:
       - name: File eulogy at Gothub Graveyard
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.GRAVEYARD_TOKEN }}
           script: |
             const body = `### Project Name
             ${context.repo.repo}
@@ -449,13 +450,17 @@ jobs:
 
     <pre><code>#!/bin/bash
 # bury.sh — file a eulogy from the terminal
-# Usage: GITHUB_TOKEN=ghp_... ./bury.sh my-dead-project
+# Usage: GRAVEYARD_TOKEN=*** ./bury.sh my-dead-project
+#
+# Create a fine-grained personal access token at:
+# https://github.com/settings/tokens
+# Give it "Issues" read/write access on bealmot/gothub-graveyard
 
 REPO_NAME="$1"
-GITHUB_TOKEN="${GITHUB_TOKEN:?Set GITHUB_TOKEN}"
+GRAVEYARD_TOKEN="${GRAVEYARD_TOKEN:?Set GRAVEYARD_TOKEN}"
 
 curl -s -X POST "https://api.github.com/repos/bealmot/gothub-graveyard/issues" \
-  -H "Authorization: Bearer $GITHUB_TOKEN" \
+  -H "Authorization: Bearer $GRAVEYARD_TOKEN" \
   -H "Content-Type: application/json" \
   -d "{
     \"title\": \"[DECEASED] $REPO_NAME\",
