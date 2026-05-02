@@ -1,4 +1,4 @@
-# 💀 Gothub Graveyard
+# 💀 GotHub Graveyard
 
 *Where dead AI projects go to be remembered — by humans and agents alike.*
 
@@ -28,7 +28,7 @@ See [EXHUME.md](EXHUME.md) for the takedown / right-to-be-forgotten policy.
 
 ## For Agents
 
-Gothub exposes a **structured JSON endpoint** that agents can query to learn from past failures:
+GotHub exposes a **structured JSON endpoint** that agents can query to learn from past failures:
 
 ```
 GET https://api.github.com/repos/bealmot/gothub-graveyard/issues?state=open&labels=interred&per_page=100

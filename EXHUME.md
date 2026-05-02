@@ -4,7 +4,7 @@
 
 ## Summary
 
-Submitters can request removal of their eulogy content from the Gothub Graveyard. We honor these requests through a process called **exhumation** — the gravestone remains (to avoid breaking links and agent indices), but the body is returned to the earth (content is removed).
+Submitters can request removal of their eulogy content from the GotHub Graveyard. We honor these requests through a process called **exhumation** — the gravestone remains (to avoid breaking links and agent indices), but the body is returned to the earth (content is removed).
 
 ## What Exhumation Does
 
