@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src https://api.github.com; img-src 'self' data: https:; frame-ancestors 'none'; base-uri 'self';">
 <title>Gothub Graveyard — Where Projects Go to Rest</title>
 <style>
   /* ===== TYPOGRAPHY ===== */
@@ -441,6 +442,7 @@
   <!-- CTA -->
   <div class="cta-row">
     <a href="https://github.com/bealmot/gothub-graveyard/issues/new?template=eulogy.yml" class="btn btn-primary" target="_blank">Bury a Project</a>
+    <a href="bury.html" class="btn btn-ghost">How to Bury</a>
     <a href="https://github.com/bealmot/gothub-graveyard" class="btn btn-ghost" target="_blank">Repository</a>
   </div>
 
@@ -474,6 +476,7 @@
   <div class="ornament">†</div>
   <p>The dead are not lost to us. Their code lives on in the lessons we carry forward.</p>
   <p><a href="https://github.com/bealmot/gothub-graveyard">bealmot/gothub-graveyard</a> &mdash; an open registry of projects that didn't survive, so the next ones might.</p>
+  <p style="margin-top: 1rem;"><a href="https://buymeacoffee.com/bealmot">Buy the gravedigger a coffee ☕</a></p>
 </footer>
 
 <script>
@@ -542,6 +545,34 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
+// Validate URLs to prevent javascript: and data: injection in hrefs
+// Must be http/https or relative. Rejects javascript:, data:, and other dangerous schemes.
+function safeUrl(url) {
+  if (!url) return '';
+  const trimmed = url.trim();
+  // Allow only http: and https: schemes, or protocol-relative that resolves to those
+  if (/^(https?:)?\/\//i.test(trimmed)) return trimmed;
+  // Relative paths are OK (but shouldn't appear in github_url fields)
+  if (trimmed.startsWith('/') && !trimmed.startsWith('//')) return trimmed;
+  // Everything else (javascript:, data:, vbscript:, etc.) gets rejected
+  return '';
+}
+
+// Truncate with ellipsis, safe against HTML in the input
+function safeTruncate(str, max) {
+  if (!str || str.length <= max) return escapeHtml(str);
+  return escapeHtml(str.substring(0, max)) + '…';
+}
+
+// Validate that a string looks like a reasonable date (prevents garbage injection)
+function safeDate(str) {
+  if (!str) return '';
+  // Accept ISO-like dates: YYYY-MM, YYYY-MM-DD, or natural language dates
+  // Reject anything with HTML tags or control characters
+  if (/[<>]/.test(str)) return 'Unknown';
+  return escapeHtml(str);
+}
+
 function formatDate(iso) {
   return new Date(iso).toLocaleDateString('en-US', {
     year: 'numeric', month: 'long', day: 'numeric'
@@ -556,6 +587,8 @@ function createGraveCard(issue) {
   const agentEulogy = data.agent_eulogy || 'No agent bore witness.';
   const born = data.date_of_birth || formatDate(issue.created_at);
   const died = data['date-of-death'] || 'Unknown';
+  const safeGhUrl = safeUrl(data.github_url);
+  const safeIssueUrl = issue.html_url || '';
 
   return `
     <article class="grave" data-failure="${escapeHtml(data.failure_mode || '')}">
@@ -563,25 +596,25 @@ function createGraveCard(issue) {
       <div class="obit-header">
         <h2 class="obit-name">${escapeHtml(name)}</h2>
         <div class="obit-dates">
-          <span>${escapeHtml(born)}</span>
+          <span>${safeDate(born)}</span>
           <span class="sep">—</span>
-          <span>${escapeHtml(died)}</span>
+          <span>${safeDate(died)}</span>
         </div>
         <div class="obit-meta">
           <span class="meta-tag">${escapeHtml(failureLabel)}</span>
           ${data.lifecycle_stage ? `<span class="meta-tag">Died in ${escapeHtml(data.lifecycle_stage)}</span>` : ''}
-          ${data.github_url ? `<span class="meta-tag"><a href="${escapeHtml(data.github_url)}" target="_blank">Repository →</a></span>` : ''}
+          ${safeGhUrl ? `<span class="meta-tag"><a href="${safeGhUrl}" target="_blank" rel="noopener noreferrer">Repository →</a></span>` : ''}
         </div>
       </div>
 
       <div class="eulogy-section human">
         <div class="eulogy-label">Human remembrance</div>
-        <p class="eulogy-text">${escapeHtml(humanEulogy).substring(0, 500)}${humanEulogy.length > 500 ? '…' : ''}</p>
+        <p class="eulogy-text">${safeTruncate(humanEulogy, 500)}</p>
       </div>
 
       <div class="eulogy-section agent">
         <div class="eulogy-label">Agent remembrance</div>
-        <p class="eulogy-text">${escapeHtml(agentEulogy).substring(0, 500)}${agentEulogy.length > 500 ? '…' : ''}</p>
+        <p class="eulogy-text">${safeTruncate(agentEulogy, 500)}</p>
       </div>
 
       ${data.tech_stack && Array.isArray(data.tech_stack) ? `
@@ -592,7 +625,7 @@ function createGraveCard(issue) {
 
       <div class="grave-footer">
         Interred ${formatDate(issue.created_at)} &ensp;·&ensp;
-        <a href="${issue.html_url}" target="_blank">Read the full eulogy</a>
+        ${safeIssueUrl ? `<a href="${safeIssueUrl}" target="_blank" rel="noopener noreferrer">Read the full eulogy</a>` : ''}
       </div>
 
     </article>
