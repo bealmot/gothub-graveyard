@@ -3,203 +3,502 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gothub Graveyard 💀</title>
+<title>Gothub Graveyard — Where Projects Go to Rest</title>
 <style>
+  /* ===== TYPOGRAPHY ===== */
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital@0;1&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
   :root {
-    --bg: #0d0d0d;
-    --card-bg: #1a1a1a;
-    --text: #e0e0e0;
-    --muted: #888;
-    --accent: #6c5ce7;
-    --accent-hover: #7c6cf7;
-    --human: #e17055;
-    --agent: #00cec9;
-    --border: #2a2a2a;
-    --grave: #555;
+    --paper: #f5f0e8;
+    --ink: #1a1a1a;
+    --ink-muted: #6b6358;
+    --ink-faint: #b8b0a4;
+    --rule: #d4cec4;
+    --rule-light: #e8e3d9;
+    --human: #8b3a3a;    /* dried blood */
+    --agent: #2d5a4b;    /* oxidized copper */
+    --accent: #3a3a3a;
+    --card-bg: #faf7f2;
+    --stone: #c4bdb0;
   }
-  * { margin:0; padding:0; box-sizing:border-box; }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
   body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    line-height: 1.6;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Crimson Text', 'EB Garamond', 'Georgia', serif;
+    font-size: 1.15rem;
+    line-height: 1.7;
     min-height: 100vh;
   }
-  header {
+
+  /* ===== MASTHEAD ===== */
+  .masthead {
     text-align: center;
-    padding: 3rem 1rem 2rem;
-    border-bottom: 1px solid var(--border);
+    padding: 5rem 2rem 3rem;
+    position: relative;
   }
-  header h1 { font-size: 2.5rem; letter-spacing: -0.02em; }
-  header h1 span { color: var(--accent); }
-  header p { color: var(--muted); margin-top: 0.5rem; font-size: 1.1rem; }
-  
-  .container { max-width: 800px; margin: 0 auto; padding: 1rem; }
 
-  /* Submit CTA */
-  .cta-bar {
-    display: flex; justify-content: center; align-items: center; gap: 1rem;
-    padding: 1.5rem 0; flex-wrap: wrap;
+  .masthead h1 {
+    font-family: 'Cormorant Garamond', 'EB Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
   }
+
+  .masthead h1 .gothub {
+    font-style: italic;
+    color: var(--ink-muted);
+  }
+
+  .masthead .ornament {
+    color: var(--ink-faint);
+    font-size: 1.2rem;
+    letter-spacing: 0.3em;
+    margin: 1rem 0;
+  }
+
+  .masthead .subtitle {
+    font-style: italic;
+    color: var(--ink-muted);
+    font-size: 1.1rem;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* decorative rule */
+  .masthead::after {
+    content: '';
+    display: block;
+    width: 120px;
+    height: 1px;
+    background: var(--rule);
+    margin: 2rem auto 0;
+  }
+
+  /* ===== CONTAINER ===== */
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ===== CTA ===== */
+  .cta-row {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1.5rem 0 3rem;
+    flex-wrap: wrap;
+  }
+
   .btn {
-    background: var(--accent); color: #fff; border: none;
-    padding: 0.75rem 1.5rem; border-radius: 8px; font-size: 1rem;
-    cursor: pointer; text-decoration: none; font-weight: 600;
-    transition: background 0.2s;
+    font-family: 'Crimson Text', serif;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    padding: 0.7rem 2rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
   }
-  .btn:hover { background: var(--accent-hover); }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--paper);
+    border: 1px solid var(--ink);
+  }
+
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--ink);
+  }
+
   .btn-ghost {
-    background: transparent; border: 1px solid var(--border); color: var(--muted);
+    background: transparent;
+    color: var(--ink-muted);
+    border: 1px solid var(--rule);
   }
-  .btn-ghost:hover { background: var(--card-bg); color: var(--text); }
 
-  /* Stats */
+  .btn-ghost:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+
+  /* ===== ENDPOINT NOTE ===== */
+  .agent-note {
+    text-align: center;
+    padding: 1.5rem 2rem;
+    margin-bottom: 3rem;
+    font-style: italic;
+    color: var(--ink-muted);
+    border-top: 1px solid var(--rule-light);
+    border-bottom: 1px solid var(--rule-light);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .agent-note code {
+    font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+    font-style: normal;
+    font-size: 0.85rem;
+    background: rgba(0,0,0,0.04);
+    padding: 0.15em 0.4em;
+    border-radius: 2px;
+  }
+
+  /* ===== STATS ===== */
   .stats {
-    display: flex; justify-content: center; gap: 2rem; padding: 1rem 0 2rem;
-    color: var(--muted); font-size: 0.9rem; flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    padding: 0 0 3rem;
+    color: var(--ink-muted);
+    font-size: 0.95rem;
+    flex-wrap: wrap;
   }
-  .stats strong { color: var(--accent); font-size: 1.4rem; }
 
-  /* Filters */
+  .stat {
+    text-align: center;
+  }
+
+  .stat-number {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-label {
+    font-style: italic;
+    font-size: 0.85rem;
+  }
+
+  /* ===== FILTERS ===== */
   .filters {
-    display: flex; gap: 0.5rem; padding: 0 0 1.5rem; flex-wrap: wrap;
+    display: flex;
+    gap: 0.4rem;
+    padding: 0 0 2rem;
+    flex-wrap: wrap;
     justify-content: center;
   }
+
   .filter-chip {
-    background: var(--card-bg); border: 1px solid var(--border);
-    color: var(--muted); padding: 0.4rem 0.8rem; border-radius: 20px;
-    cursor: pointer; font-size: 0.85rem; transition: all 0.2s;
-  }
-  .filter-chip:hover, .filter-chip.active {
-    border-color: var(--accent); color: var(--accent);
+    font-family: 'Crimson Text', serif;
+    font-size: 0.9rem;
+    font-style: italic;
+    background: transparent;
+    border: none;
+    color: var(--ink-faint);
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    position: relative;
   }
 
-  /* Grave Cards */
-  .graveyard { display: flex; flex-direction: column; gap: 1.5rem; padding-bottom: 3rem; }
+  .filter-chip::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 1px;
+    background: var(--ink);
+    transition: width 0.2s;
+  }
 
+  .filter-chip:hover { color: var(--ink-muted); }
+  .filter-chip.active { color: var(--ink); }
+  .filter-chip.active::after { width: 70%; }
+
+  /* ===== GRAVEYARD ===== */
+  .graveyard {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding-bottom: 4rem;
+  }
+
+  /* ===== GRAVE CARD — obituary format ===== */
   .grave {
-    background: var(--card-bg); border: 1px solid var(--border);
-    border-radius: 12px; padding: 1.5rem; transition: border-color 0.2s;
+    position: relative;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--rule-light);
   }
-  .grave:hover { border-color: var(--grave); }
-  
-  .grave-header {
-    display: flex; justify-content: space-between; align-items: flex-start;
-    margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;
-  }
-  .grave-name { font-size: 1.3rem; font-weight: 700; }
-  .grave-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-  
-  .badge {
-    font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 12px;
-    background: var(--bg); color: var(--muted); white-space: nowrap;
-  }
-  .badge a { color: var(--accent); text-decoration: none; }
-  .badge a:hover { text-decoration: underline; }
 
-  .eulogy { margin-bottom: 1rem; padding-left: 1rem; border-left: 3px solid var(--border); }
-  .eulogy.human { border-left-color: var(--human); }
-  .eulogy.agent { border-left-color: var(--agent); }
+  .grave:last-child { border-bottom: none; }
+
+  /* Dagger ornament above each grave */
+  .grave::before {
+    content: '†';
+    display: block;
+    font-size: 0.9rem;
+    color: var(--ink-faint);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.4em;
+  }
+
+  /* ===== OBITUARY HEADER ===== */
+  .obit-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .obit-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+  }
+
+  .obit-dates {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    color: var(--ink-muted);
+    font-style: italic;
+    font-size: 0.95rem;
+  }
+
+  .obit-dates .sep {
+    color: var(--ink-faint);
+    font-size: 0.7rem;
+  }
+
+  .obit-meta {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-top: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  .meta-tag {
+    font-family: 'Crimson Text', serif;
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--ink-muted);
+    padding: 0.2rem 0.8rem;
+    border: 1px solid var(--rule);
+  }
+
+  .meta-tag a {
+    color: var(--ink-muted);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--rule);
+  }
+
+  .meta-tag a:hover { color: var(--ink); border-color: var(--ink); }
+
+  /* ===== EULOGY ===== */
+  .eulogy-section {
+    margin: 1.5rem 0;
+    padding: 1.5rem 0 1.5rem 2rem;
+    position: relative;
+  }
+
+  .eulogy-section::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+  }
+
+  .eulogy-section.human::before { background: var(--human); opacity: 0.5; }
+  .eulogy-section.agent::before { background: var(--agent); opacity: 0.5; }
+
   .eulogy-label {
-    font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
-    margin-bottom: 0.25rem;
+    font-family: 'Crimson Text', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
   }
-  .eulogy.human .eulogy-label { color: var(--human); }
-  .eulogy.agent .eulogy-label { color: var(--agent); }
-  .eulogy p { color: var(--text); font-size: 0.95rem; }
 
+  .eulogy-section.human .eulogy-label { color: var(--human); }
+  .eulogy-section.agent .eulogy-label { color: var(--agent); }
+
+  .eulogy-text {
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.8;
+  }
+
+  /* ===== TECH STACK ===== */
+  .tech-row {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    padding: 0.5rem 0 1rem;
+  }
+
+  .tech-chip {
+    font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+    font-size: 0.7rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.03em;
+  }
+
+  /* ===== FOOTER ===== */
   .grave-footer {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border);
-    font-size: 0.8rem; color: var(--muted); flex-wrap: wrap; gap: 0.5rem;
-  }
-  .grave-footer a { color: var(--accent); text-decoration: none; }
-
-  /* Loader */
-  .loader { text-align: center; padding: 2rem; color: var(--muted); }
-  .empty { text-align: center; padding: 3rem; color: var(--muted); font-style: italic; }
-
-  /* Agent endpoint info */
-  .agent-info {
-    background: var(--card-bg); border: 1px solid var(--border);
-    border-radius: 12px; padding: 1rem 1.5rem; margin-bottom: 2rem; text-align: center;
-  }
-  .agent-info code {
-    background: var(--bg); padding: 0.2rem 0.5rem; border-radius: 4px;
-    font-size: 0.85rem; color: var(--agent);
+    text-align: center;
+    padding-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+    font-style: italic;
   }
 
-  /* Footer */
-  footer {
-    text-align: center; padding: 2rem; color: var(--muted); font-size: 0.8rem;
-    border-top: 1px solid var(--border);
+  .grave-footer a {
+    color: var(--ink-muted);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--rule);
   }
-  footer a { color: var(--accent); }
+
+  .grave-footer a:hover { color: var(--ink); border-color: var(--ink); }
+
+  /* ===== SITE FOOTER ===== */
+  .site-footer {
+    text-align: center;
+    padding: 3rem 1.5rem 4rem;
+    border-top: 1px solid var(--rule-light);
+    color: var(--ink-muted);
+    font-style: italic;
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+
+  .site-footer .ornament {
+    color: var(--ink-faint);
+    letter-spacing: 0.3em;
+    margin-bottom: 1rem;
+  }
+
+  .site-footer a { color: var(--ink-muted); border-bottom: 1px dotted var(--rule); text-decoration: none; }
+  .site-footer a:hover { color: var(--ink); border-color: var(--ink); }
+
+  /* ===== LOADING/EMPTY STATES ===== */
+  .loader {
+    text-align: center;
+    padding: 3rem;
+    color: var(--ink-faint);
+    font-style: italic;
+    font-size: 1.1rem;
+  }
+
+  .empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--ink-muted);
+    font-style: italic;
+    line-height: 1.8;
+  }
+
+  .empty .dagger {
+    font-size: 2rem;
+    color: var(--ink-faint);
+    margin-bottom: 1rem;
+  }
+
+  .empty a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 600px) {
+    .masthead h1 { font-size: 2.5rem; }
+    .masthead { padding: 3rem 1rem 2rem; }
+    .obit-name { font-size: 1.6rem; }
+    .stats { gap: 1.5rem; }
+    .container { padding: 0 1rem; }
+    .eulogy-section { padding-left: 1.5rem; }
+  }
 </style>
 </head>
 <body>
 
-<header>
-  <h1>💀 Gothub <span>Graveyard</span></h1>
-  <p>Where dead projects are remembered — by humans and agents alike</p>
+<!-- ===== MASTHEAD ===== -->
+<header class="masthead">
+  <h1><span class="gothub">Gothub</span> Graveyard</h1>
+  <div class="ornament">† &ensp; ✠ &ensp; †</div>
+  <p class="subtitle">Where dead projects are laid to rest &mdash; mourned by the humans who built them and the agents who will remember them.</p>
 </header>
 
 <div class="container">
-  <div class="cta-bar">
-    <a href="https://github.com/bealmot/gothub-graveyard/issues/new?template=eulogy.yml" class="btn" target="_blank">⚰️ Bury a Project</a>
-    <a href="https://github.com/bealmot/gothub-graveyard" class="btn btn-ghost" target="_blank">View on GitHub</a>
+
+  <!-- CTA -->
+  <div class="cta-row">
+    <a href="https://github.com/bealmot/gothub-graveyard/issues/new?template=eulogy.yml" class="btn btn-primary" target="_blank">Bury a Project</a>
+    <a href="https://github.com/bealmot/gothub-graveyard" class="btn btn-ghost" target="_blank">Repository</a>
   </div>
 
+  <!-- Agent query note -->
+  <div class="agent-note">
+    For agents: query the registry at <code>GET .../issues?labels=interred</code><br>
+    Every grave carries structured metadata — failure mode, lifecycle, stack, and lessons.
+  </div>
+
+  <!-- Stats -->
   <div class="stats" id="stats"></div>
 
-  <div class="agent-info">
-    🤖 <strong>For Agents:</strong> Query the graveyard at
-    <code>GET .../issues?labels=interred</code> —
-    every grave has structured YAML with failure mode, lifecycle, tech stack, and lessons.
-  </div>
-
+  <!-- Filters -->
   <div class="filters" id="filters">
-    <span class="filter-chip active" data-filter="all">🪦 All</span>
-    <span class="filter-chip" data-filter="scope-creep">💸 Scope Creep</span>
-    <span class="filter-chip" data-filter="architecture-collapse">🏗️ Architecture</span>
-    <span class="filter-chip" data-filter="wrong-premise">🤷 Wrong Premise</span>
-    <span class="filter-chip" data-filter="abandoned-for-shiny">👻 Abandoned</span>
+    <button class="filter-chip active" data-filter="all">All graves</button>
+    <button class="filter-chip" data-filter="scope-creep">Scope Creep</button>
+    <button class="filter-chip" data-filter="architecture-collapse">Architecture Collapse</button>
+    <button class="filter-chip" data-filter="wrong-premise">Wrong Premise</button>
+    <button class="filter-chip" data-filter="abandoned-for-shiny">Abandoned</button>
+    <button class="filter-chip" data-filter="pivoted">Pivoted</button>
   </div>
 
+  <!-- ===== GRAVEYARD ===== -->
   <div class="graveyard" id="graveyard">
-    <div class="loader">⏳ Digging up graves...</div>
+    <div class="loader">&ldquo;In the midst of life we are in death&rdquo;</div>
   </div>
+
 </div>
 
-<footer>
-  <p>The graveyard isn't for the dead — it's for the living, and the agents who will succeed where we failed.</p>
-  <p style="margin-top:0.5rem"><a href="https://github.com/bealmot/gothub-graveyard">bealmot/gothub-graveyard</a> — submit a eulogy, teach the next generation</p>
+<footer class="site-footer">
+  <div class="ornament">†</div>
+  <p>The dead are not lost to us. Their code lives on in the lessons we carry forward.</p>
+  <p><a href="https://github.com/bealmot/gothub-graveyard">bealmot/gothub-graveyard</a> &mdash; an open registry of projects that didn't survive, so the next ones might.</p>
 </footer>
 
 <script>
 const REPO = 'bealmot/gothub-graveyard';
 const API = `https://api.github.com/repos/${REPO}/issues`;
 
-// Failure mode taxonomy
 const FAILURE_MODES = {
-  'scope-creep': '💸 Scope Creep',
-  'architecture-collapse': '🏗️ Architecture Collapse',
-  'lost-direction': '🧭 Lost Direction', 
-  'time-ran-out': '⏰ Time Ran Out',
-  'never-made-money': '💰 Never Made Money',
-  'toolchain-broke': '🔧 Toolchain Broke',
-  'wrong-premise': '🤷 Wrong Premise',
-  'abandoned-for-shiny': '👻 Abandoned',
-  'pivoted': '🔄 Pivoted',
-  'other': '❓ Other'
+  'scope-creep': 'Scope Creep',
+  'architecture-collapse': 'Architecture Collapse',
+  'lost-direction': 'Lost Direction',
+  'time-ran-out': 'Time Ran Out',
+  'never-made-money': 'Never Made Money',
+  'toolchain-broke': 'Toolchain Broke',
+  'wrong-premise': 'Wrong Premise',
+  'abandoned-for-shiny': 'Abandoned for Something Shinier',
+  'pivoted': 'Pivoted',
+  'other': 'Other'
 };
 
-// Parse YAML-like body from GitHub issue
 function parseBody(body) {
   if (!body) return {};
   const parsed = {};
-  const fields = ['failure_mode', 'lifecycle_stage', 'tech_stack', 'lessons', 'images', 'date-of-death'];
-  
+
+  // Structured fields
+  const fields = ['failure_mode', 'lifecycle_stage', 'tech_stack', 'lessons', 'date-of-death'];
   for (const field of fields) {
     const patterns = [
       new RegExp(`### ${field.replace(/_/g, ' ')}[\\s\\S]*?\`([^\`]+)\``, 'i'),
@@ -210,8 +509,7 @@ function parseBody(body) {
       const m = body.match(re);
       if (m) {
         let val = m[1].trim();
-        // Try parse JSON
-        if ((field === 'tech_stack' || field === 'lessons') && val.startsWith('[') || val.startsWith('{')) {
+        if ((field === 'tech_stack' || field === 'lessons') && (val.startsWith('[') || val.startsWith('{'))) {
           try { val = JSON.parse(val); } catch(e) {}
         }
         parsed[field] = val;
@@ -220,61 +518,21 @@ function parseBody(body) {
     }
   }
 
-  // Extract eulogies
+  // Eulogies
   const humanMatch = body.match(/### 🫀 Human Eulogy[\s\S]*?\n\n([^#]+?)(?=\n###|\n\n###|$)/);
   if (humanMatch) parsed.human_eulogy = humanMatch[1].trim();
-  
+
   const agentMatch = body.match(/### 🤖 Agent Eulogy[\s\S]*?\n\n([^#]+?)(?=\n###|\n\n###|$)/);
   if (agentMatch) parsed.agent_eulogy = agentMatch[1].trim();
 
-  // Extract project name from title
+  // Project name & URL
   parsed.project_name = (body.match(/### Project Name[\s\S]*?\n\n([^\n]+)/) || [])[1]?.trim();
-
-  // Extract github URL
   parsed.github_url = (body.match(/### GitHub URL[\s\S]*?\n\n([^\n]+)/) || [])[1]?.trim();
 
+  // Timestamps from body (date-of-death vs date-of-birth from created_at)
+  parsed.date_of_birth = (body.match(/### Date of Birth[\s\S]*?\n\n([^\n]+)/) || [])[1]?.trim();
+
   return parsed;
-}
-
-function createGraveCard(issue) {
-  const data = parseBody(issue.body || '');
-  const failureLabel = FAILURE_MODES[data.failure_mode] || data.failure_mode || 'Unknown';
-  const name = data.project_name || issue.title.replace('[DECEASED] ', '');
-  const humanEulogy = data.human_eulogy || 'No human eulogy provided.';
-  const agentEulogy = data.agent_eulogy || 'No agent eulogy provided.';
-
-  return `
-    <div class="grave" data-failure="${data.failure_mode || ''}">
-      <div class="grave-header">
-        <div class="grave-name">🪦 ${escapeHtml(name)}</div>
-        <div class="grave-meta">
-          <span class="badge">${failureLabel}</span>
-          ${data.lifecycle_stage ? `<span class="badge">📊 ${escapeHtml(data.lifecycle_stage)}</span>` : ''}
-          ${data.github_url ? `<span class="badge"><a href="${escapeHtml(data.github_url)}" target="_blank">📂 Repo</a></span>` : ''}
-        </div>
-      </div>
-      
-      <div class="eulogy human">
-        <div class="eulogy-label">🫀 Human Eulogy</div>
-        <p>${escapeHtml(humanEulogy).substring(0, 400)}${humanEulogy.length > 400 ? '...' : ''}</p>
-      </div>
-      
-      <div class="eulogy agent">
-        <div class="eulogy-label">🤖 Agent Eulogy</div>
-        <p>${escapeHtml(agentEulogy).substring(0, 400)}${agentEulogy.length > 400 ? '...' : ''}</p>
-      </div>
-
-      ${data.tech_stack && Array.isArray(data.tech_stack) ? 
-        `<div class="grave-footer" style="border-top:0;margin-top:0.5rem;padding-top:0;">
-          ${data.tech_stack.map(t => `<span class="badge" style="font-family:monospace">${escapeHtml(t)}</span>`).join(' ')}
-        </div>` : ''}
-
-      <div class="grave-footer">
-        <span>⚰️ Interred ${new Date(issue.created_at).toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'})}</span>
-        <a href="${issue.html_url}" target="_blank">View full eulogy →</a>
-      </div>
-    </div>
-  `;
 }
 
 function escapeHtml(str) {
@@ -284,22 +542,84 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
+function formatDate(iso) {
+  return new Date(iso).toLocaleDateString('en-US', {
+    year: 'numeric', month: 'long', day: 'numeric'
+  });
+}
+
+function createGraveCard(issue) {
+  const data = parseBody(issue.body || '');
+  const name = data.project_name || issue.title.replace('[DECEASED] ', '');
+  const failureLabel = FAILURE_MODES[data.failure_mode] || data.failure_mode || 'Unknown cause';
+  const humanEulogy = data.human_eulogy || 'No human eulogy was written.';
+  const agentEulogy = data.agent_eulogy || 'No agent bore witness.';
+  const born = data.date_of_birth || formatDate(issue.created_at);
+  const died = data['date-of-death'] || 'Unknown';
+
+  return `
+    <article class="grave" data-failure="${escapeHtml(data.failure_mode || '')}">
+
+      <div class="obit-header">
+        <h2 class="obit-name">${escapeHtml(name)}</h2>
+        <div class="obit-dates">
+          <span>${escapeHtml(born)}</span>
+          <span class="sep">—</span>
+          <span>${escapeHtml(died)}</span>
+        </div>
+        <div class="obit-meta">
+          <span class="meta-tag">${escapeHtml(failureLabel)}</span>
+          ${data.lifecycle_stage ? `<span class="meta-tag">Died in ${escapeHtml(data.lifecycle_stage)}</span>` : ''}
+          ${data.github_url ? `<span class="meta-tag"><a href="${escapeHtml(data.github_url)}" target="_blank">Repository →</a></span>` : ''}
+        </div>
+      </div>
+
+      <div class="eulogy-section human">
+        <div class="eulogy-label">Human remembrance</div>
+        <p class="eulogy-text">${escapeHtml(humanEulogy).substring(0, 500)}${humanEulogy.length > 500 ? '…' : ''}</p>
+      </div>
+
+      <div class="eulogy-section agent">
+        <div class="eulogy-label">Agent remembrance</div>
+        <p class="eulogy-text">${escapeHtml(agentEulogy).substring(0, 500)}${agentEulogy.length > 500 ? '…' : ''}</p>
+      </div>
+
+      ${data.tech_stack && Array.isArray(data.tech_stack) ? `
+        <div class="tech-row">
+          ${data.tech_stack.map(t => `<span class="tech-chip">${escapeHtml(t)}</span>`).join(' &ensp;·&ensp; ')}
+        </div>
+      ` : ''}
+
+      <div class="grave-footer">
+        Interred ${formatDate(issue.created_at)} &ensp;·&ensp;
+        <a href="${issue.html_url}" target="_blank">Read the full eulogy</a>
+      </div>
+
+    </article>
+  `;
+}
+
 async function loadGraveyard() {
   const graveyard = document.getElementById('graveyard');
   const stats = document.getElementById('stats');
-  
+
   try {
     const res = await fetch(`${API}?state=open&labels=interred&per_page=100&sort=created&direction=desc`);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    if (!res.ok) throw new Error(`The registry could not be reached (${res.status})`);
     const issues = await res.json();
-    
+
     if (issues.length === 0) {
-      graveyard.innerHTML = '<div class="empty">🪦 The graveyard is empty. <a href="https://github.com/bealmot/gothub-graveyard/issues/new?template=eulogy.yml" style="color:var(--accent)">Be the first to bury a project.</a></div>';
+      graveyard.innerHTML = `
+        <div class="empty">
+          <div class="dagger">†</div>
+          <p>The graveyard is empty. No projects have been laid to rest here yet.</p>
+          <p><a href="https://github.com/bealmot/gothub-graveyard/issues/new?template=eulogy.yml">Be the first to bury one.</a></p>
+        </div>`;
       stats.innerHTML = '';
       return;
     }
 
-    // Stats
+    // Calculate stats
     const modeCounts = {};
     let earliest = new Date();
     issues.forEach(issue => {
@@ -308,29 +628,47 @@ async function loadGraveyard() {
       const d = new Date(issue.created_at);
       if (d < earliest) earliest = d;
     });
+
     const topMode = Object.entries(modeCounts).sort((a,b) => b[1] - a[1])[0];
-    
+
     stats.innerHTML = `
-      <span><strong>${issues.length}</strong> graves</span>
-      ${topMode ? `<span><strong>${topMode[1]}</strong> ${FAILURE_MODES[topMode[0]]?.split(' ').slice(1).join(' ') || topMode[0]}</span>` : ''}
-      <span>since <strong>${earliest.toLocaleDateString('en-US', {year:'numeric', month:'short'})}</strong></span>
+      <div class="stat">
+        <span class="stat-number">${issues.length}</span>
+        <span class="stat-label">projects interred</span>
+      </div>
+      ${topMode ? `
+        <div class="stat">
+          <span class="stat-number">${topMode[1]}</span>
+          <span class="stat-label">died of ${(FAILURE_MODES[topMode[0]] || topMode[0]).toLowerCase()}</span>
+        </div>
+      ` : ''}
+      <div class="stat">
+        <span class="stat-number">${earliest.toLocaleDateString('en-US', {year:'numeric', month:'short'})}</span>
+        <span class="stat-label">oldest grave</span>
+      </div>
     `;
 
     graveyard.innerHTML = issues.map(createGraveCard).join('');
 
   } catch (err) {
-    graveyard.innerHTML = `<div class="empty">⚠️ Could not load graveyard: ${escapeHtml(err.message)}. <a href="https://github.com/bealmot/gothub-graveyard" style="color:var(--accent)">View on GitHub.</a></div>`;
+    graveyard.innerHTML = `
+      <div class="empty">
+        <div class="dagger">†</div>
+        <p>The graveyard is resting. It could not be reached.</p>
+        <p><a href="https://github.com/bealmot/gothub-graveyard">Visit the repository</a> to pay your respects.</p>
+        <p style="font-size:0.8rem;margin-top:1rem;color:var(--ink-faint)">${escapeHtml(err.message)}</p>
+      </div>`;
     console.error(err);
   }
 }
 
-// Filter chips
+// Filtering
 document.getElementById('filters').addEventListener('click', (e) => {
   if (!e.target.classList.contains('filter-chip')) return;
-  
+
   document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
   e.target.classList.add('active');
-  
+
   const filter = e.target.dataset.filter;
   document.querySelectorAll('.grave').forEach(grave => {
     grave.style.display = (filter === 'all' || grave.dataset.failure === filter) ? '' : 'none';
