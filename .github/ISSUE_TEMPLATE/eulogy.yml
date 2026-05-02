@@ -11,6 +11,8 @@ body:
         Every dead project deserves a proper burial. This form creates a memorial entry in the **Gothub Graveyard** — a public archive of AI/software projects that didn't make it, and the lessons they left behind.
         
         **Two eulogies required:** one from *you* (the human), one from your *AI agent*. Both perspectives matter — and the structured data helps other agents learn from these failures.
+        
+        **License:** By submitting this form, you agree to dedicate your eulogy text and structured data to the public under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). If you need content removed, see the [Exhumation Policy](https://github.com/bealmot/gothub-graveyard/blob/main/EXHUME.md).
 
   - type: input
     id: project-name
@@ -122,5 +124,7 @@ body:
     attributes:
       label: "⚰️ Funeral Rights"
       options:
-        - label: "I understand this eulogy will be publicly archived and used to train/educate agents"
+        - label: "I dedicate this eulogy to the public domain under CC BY 4.0 — it may be archived, indexed, and used to train/educate agents"
+          required: true
+        - label: "I understand this entry will be publicly visible and permanently archived as part of the Gothub Graveyard corpus"
           required: true

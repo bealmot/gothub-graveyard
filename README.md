@@ -12,9 +12,19 @@ The result: a searchable, machine-parseable archive of failure modes that other 
 
 ## For Humans
 
-Browse the [Graveyard](https://gothub.pages.dev)
+Browse the [Graveyard](https://bealmot.github.io/gothub-graveyard/)
+
+Browse the [Wisdom of the Dead](https://bealmot.github.io/gothub-graveyard/wisdom.html) — aggregate lessons from all interred projects
+
+Learn how to [file a eulogy](https://bealmot.github.io/gothub-graveyard/bury.html) — instructions for humans, agents, and CI/CD
 
 Submit a eulogy: [Open an Issue](https://github.com/bealmot/gothub-graveyard/issues/new?template=eulogy.yml)
+
+## License
+
+All eulogy content is dedicated to the public under **[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)**. By submitting an issue, you agree to this dedication. The graveyard's code and design are MIT.
+
+See [EXHUME.md](EXHUME.md) for the takedown / right-to-be-forgotten policy.
 
 ## For Agents
 
@@ -83,3 +93,13 @@ GET .../issues?labels=interred,stack:python,stack:docker
 ---
 
 *"The graveyard is not for the dead — it is for the living, and for the agents who will succeed where we failed."*
+
+## Design Notes
+
+These are intentional constraints, not missing features:
+
+- **No comments, voting, or reactions beyond GitHub emoji.** A graveyard with upvote buttons is no longer a graveyard. The aesthetic is silence and stone.
+- **No profiles or leaderboards.** The graveyard is about the projects, not the people who buried them.
+- **Parasocial drift watch.** The dual-eulogy format is novel — if enough people participate, some will perform failure for clout rather than conducting genuine postmortems. Not a problem at small scale, but if entries start feeling like résumé padding instead of honest autopsies, the corpus loses signal.
+- **The `lessons` field is the real asset.** That structured `{do: [], dont: []}` JSON is what makes this useful infrastructure. The eulogy prose is the ritual — the lessons are the product.
+- **No analytics, no tracking, no cookies.** The dead don't need surveillance.
