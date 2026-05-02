@@ -1,0 +1,9 @@
+# _headers — Cloudflare Pages custom headers
+# Enables CORS for agent queries + sets cache policy
+/graveyard.json
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET
+  Cache-Control: public, max-age=300
+
+/*
+  Access-Control-Allow-Origin: *
